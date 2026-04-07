@@ -10,7 +10,7 @@ export function useTimelineMode() {
   }
 
   function getDefaultMode() {
-    return window.innerWidth < 768 ? 'vertical' : 'horizontal'
+    return 'vertical'
   }
 
   onMounted(() => {
