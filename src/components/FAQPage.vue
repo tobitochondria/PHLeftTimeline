@@ -60,7 +60,7 @@ function toggle(i) {
     <Transition name="overlay">
       <div
         v-if="activePage === 'faq'"
-        class="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto py-20 px-4"
+        class="fixed inset-0 z-[60] flex flex-col justify-end sm:items-start sm:justify-center sm:overflow-y-auto sm:py-20 sm:px-4"
         role="dialog"
         aria-modal="true"
         aria-label="Frequently Asked Questions"
@@ -72,12 +72,17 @@ function toggle(i) {
         />
 
         <!-- Panel -->
-        <div class="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div class="relative w-full sm:max-w-2xl bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col max-h-[92dvh] sm:max-h-none overflow-hidden">
+          <!-- Mobile drag handle -->
+          <div class="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
+            <div class="w-10 h-1 rounded-full bg-surface-200"></div>
+          </div>
+
           <!-- Header -->
-          <div class="flex items-center justify-between px-8 py-6 border-b border-surface-100">
+          <div class="shrink-0 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 border-b border-surface-100">
             <div class="flex items-center gap-3">
-              <HelpCircle :size="22" class="text-primary-600" />
-              <h2 class="font-display text-2xl font-bold text-surface-950">
+              <HelpCircle :size="20" class="text-primary-600 shrink-0" />
+              <h2 class="font-display text-lg sm:text-2xl font-bold text-surface-950 leading-tight">
                 Frequently Asked Questions
               </h2>
             </div>
@@ -91,14 +96,14 @@ function toggle(i) {
           </div>
 
           <!-- FAQ accordion -->
-          <div class="px-8 py-6 space-y-2">
+          <div class="overflow-y-auto flex-1 px-4 sm:px-8 py-4 sm:py-6 space-y-2">
             <div
               v-for="(item, i) in faqs"
               :key="i"
               class="border border-surface-100 rounded-xl overflow-hidden"
             >
               <button
-                class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-surface-50 transition-colors cursor-pointer"
+                class="w-full flex items-center justify-between gap-3 px-3 sm:px-5 py-3 sm:py-4 text-left hover:bg-surface-50 transition-colors cursor-pointer"
                 :aria-expanded="openIndex === i"
                 @click="toggle(i)"
               >
@@ -110,7 +115,7 @@ function toggle(i) {
                 />
               </button>
               <Transition name="faq-expand">
-                <div v-if="openIndex === i" class="px-5 pb-4">
+                <div v-if="openIndex === i" class="px-3 sm:px-5 pb-4">
                   <p class="text-sm text-surface-600 leading-relaxed">{{ item.a }}</p>
                 </div>
               </Transition>

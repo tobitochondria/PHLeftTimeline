@@ -10,7 +10,7 @@ const { activePage, closePage } = usePageOverlay()
     <Transition name="overlay">
       <div
         v-if="activePage === 'about'"
-        class="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto py-20 px-4"
+        class="fixed inset-0 z-[60] flex flex-col justify-end sm:items-start sm:justify-center sm:overflow-y-auto sm:py-20 sm:px-4"
         role="dialog"
         aria-modal="true"
         aria-label="About"
@@ -22,9 +22,14 @@ const { activePage, closePage } = usePageOverlay()
         />
 
         <!-- Panel -->
-        <div class="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div class="relative w-full sm:max-w-2xl bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col max-h-[92dvh] sm:max-h-none overflow-hidden">
+          <!-- Mobile drag handle -->
+          <div class="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
+            <div class="w-10 h-1 rounded-full bg-surface-200"></div>
+          </div>
+
           <!-- Header -->
-          <div class="flex items-center justify-between px-8 py-6 border-b border-surface-100">
+          <div class="shrink-0 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 border-b border-surface-100">
             <div class="flex items-center gap-3">
               <BookOpen :size="22" class="text-primary-600" />
               <h2 class="font-display text-2xl font-bold text-surface-950">About</h2>
@@ -39,7 +44,7 @@ const { activePage, closePage } = usePageOverlay()
           </div>
 
           <!-- Body -->
-          <div class="px-8 py-8 space-y-8">
+          <div class="overflow-y-auto flex-1 px-4 sm:px-8 py-6 sm:py-8 space-y-8">
             <!-- Project blurb -->
             <div>
               <h3 class="text-xs font-semibold uppercase tracking-[0.15em] text-primary-500 mb-3">
@@ -93,7 +98,7 @@ const { activePage, closePage } = usePageOverlay()
               <h3 class="text-xs font-semibold uppercase tracking-[0.15em] text-primary-500 mb-4">
                 Contact
               </h3>
-              <div class="flex items-center gap-3">
+              <div class="flex flex-wrap items-center gap-3">
                 <a
                   href="https://github.com/tobitochondria/PHLeftTimeline"
                   target="_blank"

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { BookOpen, HelpCircle } from 'lucide-vue-next'
 import ModeToggle from './ModeToggle.vue'
 import { usePageOverlay } from '../composables/usePageOverlay.js'
 
@@ -46,7 +47,7 @@ onUnmounted(() => {
           </span>
         </button>
 
-        <!-- Center nav links -->
+        <!-- Center nav links (sm+: text buttons, mobile: icon buttons in right actions) -->
         <div class="hidden sm:flex items-center gap-1">
           <button
             class="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-300 cursor-pointer"
@@ -66,6 +67,25 @@ onUnmounted(() => {
 
         <!-- Right actions -->
         <div class="flex items-center gap-1">
+          <!-- Mobile About / FAQ icon buttons -->
+          <div class="flex sm:hidden items-center gap-0.5">
+            <button
+              @click="openPage('about')"
+              class="p-2 rounded-lg transition-colors duration-300 cursor-pointer"
+              :class="scrolled ? 'text-surface-600 hover:text-surface-950 hover:bg-surface-100' : 'text-white/80 hover:text-white hover:bg-white/10'"
+              aria-label="About"
+            >
+              <BookOpen :size="18" />
+            </button>
+            <button
+              @click="openPage('faq')"
+              class="p-2 rounded-lg transition-colors duration-300 cursor-pointer"
+              :class="scrolled ? 'text-surface-600 hover:text-surface-950 hover:bg-surface-100' : 'text-white/80 hover:text-white hover:bg-white/10'"
+              aria-label="FAQ"
+            >
+              <HelpCircle :size="18" />
+            </button>
+          </div>
           <ModeToggle :scrolled="scrolled" />
         </div>
       </div>
