@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+/*
+ * ─── THEME ──────────────────────────────────────────────
+ * TailwindCSS v4 CSS-first configuration
+ */
+@theme {
+  /* ─ Fonts ─ */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+
+  /* ─ Primary (Crimson Red) ─ */
+  --color-primary-50: #fef2f2;
+  --color-primary-100: #fee2e2;
+  --color-primary-200: #fecaca;
+  --color-primary-300: #fca5a5;
+  --color-primary-400: #f87171;
+  --color-primary-500: #ef4444;
+  --color-primary-600: #dc2626;
+  --color-primary-700: #b91c1c;
+  --color-primary-800: #991b1b;
+  --color-primary-900: #7f1d1d;
+  --color-primary-950: #450a0a;
+
+  /* ─ Accent (Warm Gold) ─ */
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+  --color-accent-800: #92400e;
+  --color-accent-900: #78350f;
+  --color-accent-950: #451a03;
+
+  /* ─ Surface (Stone) ─ */
+  --color-surface-0: #fafaf9;
+  --color-surface-50: #f5f5f4;
+  --color-surface-100: #e7e5e4;
+  --color-surface-200: #d6d3d1;
+  --color-surface-300: #a8a29e;
+  --color-surface-400: #78716c;
+  --color-surface-500: #57534e;
+  --color-surface-600: #44403c;
+  --color-surface-700: #292524;
+  --color-surface-800: #1c1917;
+  --color-surface-900: #0f0e0d;
+  --color-surface-950: #0a0908;
+
+  /* ─ Era Colors ─ */
+  --color-era-a: #b91c1c;
+  --color-era-b: #dc2626;
+  --color-era-c: #d97706;
+  --color-era-d: #059669;
+  --color-era-e: #7c3aed;
+  --color-era-f: #2563eb;
+  --color-era-g: #db2777;
+
+  /* ─ Animations ─ */
+  --animate-fade-up: fade-up 0.6s ease-out both;
+  --animate-fade-in: fade-in 0.4s ease-out both;
+  --animate-bounce-subtle: bounce-subtle 2s ease-in-out infinite;
+}
+
+/*
+ * ─── KEYFRAMES ──────────────────────────────────────────
+ */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/*
+ * ─── BASE LAYER ─────────────────────────────────────────
+ */
+@layer base {
+  html {
+    @apply font-sans;
+  }
+
+  /* Light mode (default) */
+  :root {
+    --tw-bg-base: var(--color-surface-0);
+    --tw-text-base: var(--color-surface-950);
+    --tw-text-muted: var(--color-surface-700);
+    --tw-border-base: var(--color-surface-200);
+    --tw-card-bg: #ffffff;
+    --tw-card-border: var(--color-surface-100);
+    --tw-glass-bg: rgba(255, 255, 255, 0.7);
+    --tw-glass-border: rgba(255, 255, 255, 0.3);
+  }
+
+  body {
+    background-color: var(--tw-bg-base);
+    color: var(--tw-text-base);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/*
+ * ─── COMPONENT LAYER ────────────────────────────────────
+ */
+@layer components {
+  /* Solid card */
+  .solid-card {
+    background: var(--tw-card-bg);
+    border: 1px solid var(--tw-card-border);
+    border-radius: 1rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .solid-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Timeline spine */
+  .timeline-spine {
+    position: absolute;
+    width: 3px;
+    background: linear-gradient(
+      to bottom,
+      var(--color-primary-300),
+      var(--color-primary-600),
+      var(--color-accent-500)
+    );
+    border-radius: 999px;
+  }
+
+  /* Horizontal scrollbar styling */
+  .horizontal-scroll::-webkit-scrollbar {
+    height: 6px;
+  }
+  .horizontal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    background: var(--tw-border-base);
+    border-radius: 999px;
+  }
+  .horizontal-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--color-surface-400);
+  }
+
+  /* Era badge */
+  .era-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium;
+    transition: all 0.2s ease;
+  }
+
+  /* Glass navbar */
+  .glass-nav {
+    background: var(--tw-glass-bg);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border-bottom: 1px solid var(--tw-glass-border);
+  }
+}
+
+/*
+ * ─── UTILITIES LAYER ────────────────────────────────────
+ */
+@layer utilities {
+  .text-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-800), var(--color-accent-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
