@@ -10,7 +10,7 @@ const { activePage, closePage } = usePageOverlay()
     <Transition name="overlay">
       <div
         v-if="activePage === 'about'"
-        class="fixed inset-0 z-[60] flex flex-col justify-end sm:items-start sm:justify-center sm:overflow-y-auto sm:py-20 sm:px-4"
+        class="fixed inset-0 z-[60] flex flex-col justify-end sm:items-center sm:justify-center sm:overflow-y-auto sm:py-20 sm:px-4"
         role="dialog"
         aria-modal="true"
         aria-label="About"
